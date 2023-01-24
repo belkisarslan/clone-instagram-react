@@ -7,7 +7,11 @@ export const RegisterSchema = Yup.object().shape({
     full_name: Yup.string()
     .required(),
 	username: Yup.string()
-		.required(),
+		.required()
+        .test({
+          message: 'Lütfen geçerli bir kullanıcı adı girin',
+          test: str => /^[a-z0-9._]+$/i.test(str)
+        }),
 	password: Yup.string()
 		.required()
 })
