@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import Input from "components/Input";
 import {AiFillFacebook} from "react-icons/ai"
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { login } from "firebase.js";
 import { Formik, Form } from "formik";
 import { LoginSchema } from "validation";
+import Button from "components/Button";
+import Separator from "components/Separator";
 
 export default function Login(){
   const navigate = useNavigate()
@@ -39,10 +41,12 @@ export default function Login(){
 
   
   const handleSubmit = async(values, actions)=> {
-    await login(values.username, values.password)
-    navigate(location.state?.return_url || '/',{
+    const response = await login(values.username, values.password)
+    if(response){
+      navigate(location.state?.return_url || '/',{
         replace: true
     })
+    }
   }
 
   return (
@@ -76,12 +80,8 @@ export default function Login(){
          <Input name="username" label="Phone number, username or email"/>
         <Input type="password" name="password" label="Password"/>
         
-        <button type="submit" disabled={!isValid || !dirty || isSubmitting} className="h-[30px] mt-1 rounded bg-brand text-white disabled:opacity-50">Log In</button>
-        <div className="flex items-center my-2.5 mb-3.5">
-          <div className="h-px bg-gray-300 flex-1"/>
-          <span className="px-4 text-[13px] text-gray-500">OR</span>
-          <div className="h-px bg-gray-300 flex-1"/>
-        </div>
+        <Button type="submit" disabled={!isValid || !dirty || isSubmitting}>Log In</Button>
+        <Separator/>
         <div>
           <a href="https://www.instagram.com/" className="flex justify-center items-center mb-2.5 gap-x-2 text-sm font-semibold text-facebook">
           <AiFillFacebook size={20}/>
@@ -97,7 +97,7 @@ export default function Login(){
     </div>
 
     <div className="bg-white border p-4 text-sm text-center">
-    Don't have an accont? <a href="https://www.instagram.com/" className="font-semibold text-brand">Sign up</a>
+    Don't have an accont? <Link to="/auth/register" className="font-semibold text-brand">Sign up</Link>
     </div>
 
     </div>

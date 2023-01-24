@@ -20,7 +20,7 @@ export default function Input({label, type ='text', ...props}){
         <label className="relative flex border bg-zinc-50 rounded-sm focus-within:border-gray-400">
         <input type={inputType}
         className={classNames({
-            "w-full h-[38px]  outline-none text-xs px-2" : true,
+            "w-full h-[38px]  outline-none text-xs bg-transparent px-2" : true,
             "pt-[10px]": field.value
         })} {...props} {...field} />
         <small className={classNames({

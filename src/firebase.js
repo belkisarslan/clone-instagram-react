@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signOut, signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
+import { getAuth, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged} from "firebase/auth";
 import { toast } from "react-hot-toast";
 import { userHandle } from "utils";
 
@@ -26,6 +26,18 @@ export const login = async (email, password) => {
 	} catch (err) {
 		toast.error(err.code)
 	}
+}
+
+export const register = async ({email, password, full_name, username}) => {
+	try {
+	 const response = await createUserWithEmailAndPassword(auth, email, password)
+	 console.log(response)
+	 await updateProfile(auth.currentUser,{
+		displayName: full_name
+	 })
+     } catch (err) {
+		toast.error(err.code)
+	   }
 }
 
 export const logout = async () => {
