@@ -65,7 +65,11 @@ export const register = async ({email, password, full_name, username}) => {
 		username,
 		followers: [],
 		following: [],
-		notifications: []
+		notifications: [],
+		website: '',
+		bio: '',
+		phoneNumber: '',
+		gender: ''
 	 })
 	 
 	 
