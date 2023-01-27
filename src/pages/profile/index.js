@@ -3,14 +3,16 @@ import Icon from "components/Icon"
 import { getUserInfo } from "firebase.js"
 import { useEffect } from "react"
 import { useState } from "react"
+import { Helmet } from "react-helmet"
 import { useParams, useNavigate, NavLink, Outlet } from "react-router-dom"
 import Header from "./components/header"
+import ProfileNotFound from "./not-found"
 
 
 export default function ProfileLayout(){
 
     const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState(false)
+    const [user, setUser] = useState(null)
     const {username} = useParams()
     const navigate = useNavigate()
 
@@ -19,14 +21,21 @@ export default function ProfileLayout(){
      .then(user => {
         setUser(user)
      }).catch(err => {
-       navigate('/',{
-        replace: true
-       })
+       setUser(false)
      })
     })
+
+    if(user === false){
+      return(
+       <ProfileNotFound/>
+      )
+    }
     
     return user &&(
        <>
+       <Helmet>
+         <title>{user.full_name}(@{user.username}) • Instagram photos and videos</title>
+       </Helmet>
        <Header user={user}/>
        <nav className="border-t flex gap-x-16 justify-center items-center">
           <NavLink to={`/${username}`} end={true} className={({isActive}) => classNames({

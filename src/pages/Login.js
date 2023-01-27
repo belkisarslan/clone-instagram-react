@@ -8,6 +8,7 @@ import { LoginSchema } from "validation";
 import Button from "components/Button";
 import Separator from "components/Separator";
 import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 
 export default function Login(){
   const user = useSelector(state => state.auth.user)
@@ -51,6 +52,9 @@ export default function Login(){
 
   return (
    <div className="h-full w-full flex flex-wrap overflow-auto items-center gap-x-8 justify-center">
+     <Helmet>
+    <title>Login • Instagram</title>
+    </Helmet>
     {/* left side */}
     <div className=" hidden md:block w-[380px] h-[581px] bg-logo-pattern relative bg-[length:468.32px_634.15px] bg-[top_left_-46px]">
       <div ref={ref} className="w-[250px] h-[538px] absolute top-[27px] right-[18px] ">
@@ -63,10 +67,10 @@ export default function Login(){
     {/* right side */}
     <div className="w-[350px] grid gap-y-3">
     <div className="bg-white border p-[40px] pt-10 pb-2 ">
-      <a href="https://www.instagram.com/" className="flex justify-center mb-8">
+      <div className="flex justify-center mb-8">
       <img className="h-[51px]"
 								 src="https://www.instagram.com/static/images/web/logged_out_wordmark-2x.png/d2529dbef8ed.png" alt=""/>
-      </a>
+      </div>
     
      <Formik initialValues={{
         username: '',

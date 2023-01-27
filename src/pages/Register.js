@@ -6,6 +6,7 @@ import { Formik, Form } from "formik";
 import { RegisterSchema } from "validation";
 import Button from "components/Button";
 import Separator from "components/Separator";
+import { Helmet } from "react-helmet";
 
 export default function Register(){
   const navigate = useNavigate()
@@ -24,11 +25,14 @@ export default function Register(){
 
   return (
    <div className="w-[350px] grid gap-y-3">
+    <Helmet>
+    <title>Register • Instagram</title>
+    </Helmet>
     <div className="bg-white border p-[40px] pt-10 pb-2 ">
-      <a href="https://www.instagram.com/" className="flex justify-center mb-4">
+      <div className="flex justify-center mb-4">
       <img className="h-[51px]"
 								 src="https://www.instagram.com/static/images/web/logged_out_wordmark-2x.png/d2529dbef8ed.png" alt=""/>
-      </a>
+      </div>
       <p className="text-[17px] font-semibold text-[#8e8e8e] text-center mb-6">
         Sign up to see photos and videos from your friends.
       </p>
