@@ -18,7 +18,7 @@ export default function Header(){
             <NavLink to="/">
               <Icon name="home" size={24}/>
             </NavLink>
-            <NavLink to="/">
+            <NavLink to="/inbox">
               <Icon name="direct" size={24}/>
             </NavLink>
             <NavLink to="/">

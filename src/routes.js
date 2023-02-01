@@ -8,6 +8,8 @@ import ProfileLayout from "pages/profile";
 import ProfilePosts from "pages/profile/posts";
 import ProfileTagged from "pages/profile/tagged";
 import Logout from "pages/Logout";
+import InboxLayout from "pages/inbox";
+import Inbox from "pages/inbox/Inbox";
 
 const routes = [
     {
@@ -34,6 +36,16 @@ const routes = [
                     {
                         path: 'tagged',
                         element: <ProfileTagged/>
+                    }
+                ]
+            },
+            {
+                path: 'inbox',
+                element: <InboxLayout/>,
+                children: [
+                    {
+                        index: true,
+                        element: <Inbox/>
                     }
                 ]
             }
