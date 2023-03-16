@@ -1,8 +1,10 @@
 import classNames from 'classnames'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 
 export const ChatList = () => {
+
+  const {conversationId} = useParams()
 
   const chats = [
     {
@@ -41,10 +43,11 @@ export const ChatList = () => {
     {chats.map(chat => (
       <NavLink className={classNames({
         "h-[72px] flex items-center gap-x-4 hover:bg-zinc-50 px-5": true,
-        "font-semibold": chat?.unread
+        "font-semibold": chat?.unread,
+        "!bg-[#efefef]": +conversationId === chat.id
       })} 
       key={chat.id} 
-      to="/inbox">
+      to={`/inbox/${chat.id}`}>
       <img src={chat.user.avatar} className="w-14 h-14 rounded-full" alt=''/>
       <div>
         <h6 className='text-sm'>{chat.user.name}</h6>
